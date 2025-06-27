@@ -1,0 +1,14 @@
+version: "3.9"
+
+services:
+  db:
+    image: postgres:15
+    container_name: rtb-postgres
+    environment:
+      POSTGRES_USER: rtb_user
+      POSTGRES_PASSWORD: rtb_pass
+      POSTGRES_DB: rtb
+    volumes:
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "5432:5432"
