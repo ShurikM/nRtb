@@ -5,6 +5,7 @@ from pathlib import Path
 sys.path.append(str(Path(__file__).resolve().parents[2]))
 
 from fastapi import FastAPI, Depends, Request, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 from shared.auth import verify_session
 from shared.database import get_db
 from shared import crud_campaign, schemas
@@ -12,6 +13,19 @@ from shared import auth
 
 
 app = FastAPI()
+
+origins = [
+    "http://localhost:5173",  # your React dev server
+    "http://127.0.0.1:5173",
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,  # this is required for session cookies!
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @app.get("/campaigns", response_model=list[schemas.Campaign])
 def read_campaigns(request: Request, db=Depends(get_db), _=Depends(verify_session)):

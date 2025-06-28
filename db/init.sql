@@ -110,6 +110,9 @@ INSERT INTO campaign_targeting (campaign_id, targeting_type, targeting_value) VA
 (2, 'device', '["mobile", "tablet"]');
 
 INSERT INTO creatives (campaign_id, name, width, height, banner_url, click_url) VALUES
-(1, 'Summer Banner 728x90', 728, 90, 'https://cdn.example.com/banners/summer_728x90.jpg', 'https://example.com/summer-sale'),
-(1, 'Summer Banner 300x250', 300, 250, 'https://cdn.example.com/banners/summer_300x250.jpg', 'https://example.com/summer-sale'),
-(2, 'Brand Banner Mobile', 320, 50, 'https://cdn.example.com/banners/brand_320x50.jpg', 'https://example.com/brand');
+-- Leaderboard
+(1, 'Summer Banner 728x90', 728, 90, 'https://dummyimage.com/728x90/4f46e5/ffffff&text=Summer+728x90', 'https://example.com/summer-sale'),
+-- Medium Rectangle
+(1, 'Summer Banner 300x250', 300, 250, 'https://dummyimage.com/300x250/16a34a/ffffff&text=Summer+300x250', 'https://example.com/summer-sale'),
+-- Mobile Banner
+(2, 'Brand Banner Mobile', 320, 50, 'https://dummyimage.com/320x50/f97316/ffffff&text=Brand+Mobile+320x50', 'https://example.com/brand');
