@@ -1,0 +1,50 @@
+syntax = "proto3";
+
+package rtb;
+
+service EventLogger {
+  rpc LogBidRequest(BidRequestLog) returns (LogAck);
+  rpc LogBid(BidLog) returns (LogAck);
+  rpc LogImpression(ImpressionLog) returns (LogAck);
+  rpc LogClick(ClickLog) returns (LogAck);
+}
+
+message LogAck {
+  bool success = 1;
+}
+
+message BidRequestLog {
+  string request_id = 1;
+  string imp_id = 2;
+  string auction_id = 3;
+  string site_domain = 4;
+  string site_page = 5;
+  string user_country = 6;
+  string user_language = 7;
+  string device_type = 8;
+  int32 banner_width = 9;
+  int32 banner_height = 10;
+  float floor_price = 11;
+}
+
+message BidLog {
+  int32 bid_request_id = 1;
+  int32 campaign_id = 2;
+  int32 creative_id = 3;
+  float bid_price = 4;
+  bool won = 5;
+  float win_price = 6;
+}
+
+message ImpressionLog {
+  int32 bid_id = 1;
+  int32 campaign_id = 2;
+  int32 creative_id = 3;
+  float cost = 4;
+}
+
+message ClickLog {
+  int32 impression_id = 1;
+  int32 campaign_id = 2;
+  int32 creative_id = 3;
+}
