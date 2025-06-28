@@ -20,6 +20,7 @@ class Campaign(Base):
     updated_at = Column(DateTime, default=datetime.utcnow)
 
     creatives = relationship("Creative", back_populates="campaign")
+    targeting_rules = relationship("TargetingRule", back_populates="campaign")
 
 class Creative(Base):
     __tablename__ = "creatives"
@@ -35,3 +36,13 @@ class Creative(Base):
     created_at = Column(DateTime, default=datetime.utcnow)
 
     campaign = relationship("Campaign", back_populates="creatives")
+
+class TargetingRule(Base):
+    __tablename__ = "campaign_targeting"
+
+    id = Column(Integer, primary_key=True)
+    campaign_id = Column(Integer, ForeignKey("campaigns.id", ondelete="CASCADE"))
+    targeting_type = Column(String(50), nullable=False)
+    targeting_value = Column(Text, nullable=False)
+
+    campaign = relationship("Campaign", back_populates="targeting_rules")

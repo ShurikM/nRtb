@@ -1,10 +1,13 @@
-from sqlalchemy.orm import Session
+from sqlalchemy.orm import Session, joinedload
 from . import models, schemas
 from fastapi import HTTPException
 
 
 def get_campaigns(db: Session):
-    return db.query(models.Campaign).all()
+    return db.query(models.Campaign).options(
+        joinedload(models.Campaign.creatives),
+        joinedload(models.Campaign.targeting_rules)
+    ).all()
 
 def create_campaign(db: Session, campaign: schemas.CampaignCreate):
     db_campaign = models.Campaign(**campaign.dict())
