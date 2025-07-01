@@ -12,6 +12,7 @@ from shared.protos import events_pb2, events_pb2_grpc
 
 
 
+
 class EventLoggerServicer(events_pb2_grpc.EventLoggerServicer):
     def LogBidRequest(self, request, context):
         db = SessionLocal()
